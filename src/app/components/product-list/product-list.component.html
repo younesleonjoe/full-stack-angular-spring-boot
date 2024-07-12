@@ -1,0 +1,78 @@
+<div>
+  <div id="product-list-component" class="d-flex">
+    <app-product-category-menu></app-product-category-menu>
+    <div class="container-fluid">
+      <div
+        id="alert-container"
+        *ngIf="products?.length == 0"
+        class="h-100 d-flex"
+      >
+        <div
+          class="alert alert-warning text-center m-auto"
+          role="alert"
+          style="width: 300px"
+        >
+          <span id="alert-message">No product found.</span>
+        </div>
+      </div>
+      <div id="product-row" class="row g-2">
+        <!--<div *ngFor="let product of products" class="col-sm-6 col-md-4 col-xl-3 col-xxl-2">-->
+        <div
+          *ngFor="let product of products"
+          [ngClass]="{ 'col-xxl-2': page.size > 10 && page.totalElements > 10 }"
+          class="col-sm-6 col-lg-4 col-xl-3"
+        >
+          <div class="card">
+            <a routerLink="/products/{{ product.id }}">
+              <img
+                src="{{ product.imageUrl }}"
+                class="card-img-top"
+                alt="..."
+              />
+            </a>
+            <div class="card-body">
+              <h5 class="card-title fs-6" style="height: 60px">
+                {{ product.name }}
+              </h5>
+              <div class="d-flex align-items-center justify-content-between">
+                <button (click)="addToCart(product)" class="btn btn-primary">
+                  <span class="text-nowrap">Add to cart</span>
+                </button>
+                <div class="text-primary">
+                  {{ product.unitPrice | currency: "USD" }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="(products?.length ?? 0) > 0"
+    class="d-flex flex-column flex-sm-row align-items-center justify-content-end mt-3 mt-sm-2 me-2 gap-1 gap-sm-0"
+  >
+    <div class="w-100 ms-4 ms-sm-0 d-flex align-items-center justify-content-start justify-content-sm-end">
+      <span class="me-2 fs-6">Page Size</span>
+      <select
+        class="fs-5"
+        #pageSelect
+        (change)="updatePageSize(pageSelect.value)"
+      >
+        <option value="10" selected>10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+    <ngb-pagination
+      [(page)]="page.number"
+      [pageSize]="page.size"
+      [collectionSize]="100"
+      [maxSize]="maxVisibleNumberInPagination"
+      [boundaryLinks]="false"
+      (pageChange)="listProducts()"
+      class="ms-auto ms-sm-4"
+      style="position: relative; top: 8px; right: 0"
+    ></ngb-pagination>
+  </div>
+</div>

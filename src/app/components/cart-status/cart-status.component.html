@@ -1,0 +1,24 @@
+<div class="d-flex align-items-center gap-2">
+  <span class="text-white fs-5 fw-bold">
+    {{ totalPrice | currency: "USD" }}
+  </span>
+  <div class="me-2">
+    <a
+      routerLink="/cart-details"
+      class="position-relative"
+      style="text-decoration: none; top: 3px"
+    >
+      <div class="position-absolute start-50 translate-middle-x">
+        <span id="count" class="text-dark fw-medium ms-1" style="font-size: 17px">
+          {{ totalQuantity }}
+        </span>
+      </div>
+      <i
+        id="cart-icon"
+        class="fa fa-shopping-cart m-0"
+        style="font-size: 38px !important; color: white"
+        aria-hidden="true"
+      ></i>
+    </a>
+  </div>
+</div>

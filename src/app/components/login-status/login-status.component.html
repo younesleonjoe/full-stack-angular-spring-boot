@@ -1,0 +1,30 @@
+<div class="mx-4 d-flex align-items-center">
+  <button
+    *ngIf="!isAuthenticated"
+    routerLink="/login"
+    class="btn btn-outline-light border-2"
+  >
+    Login
+  </button>
+  <button
+    *ngIf="isAuthenticated"
+    class="btn btn-outline-light border-2"
+    (click)="logout()"
+  >
+    Logout
+  </button>
+  <button
+    *ngIf="isAuthenticated"
+    routerLink="/members"
+    class="btn btn-outline-light border-2 ms-2"
+  >
+    Member
+  </button>
+  <button
+    *ngIf="isAuthenticated"
+    routerLink="/order-history"
+    class="btn btn-outline-light border-2 ms-2"
+  >
+    Orders
+  </button>
+</div>

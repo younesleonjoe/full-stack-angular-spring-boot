@@ -1,0 +1,16 @@
+<form class="d-flex" role="search">
+  <input
+    #searchInput
+    placeholder="Search"
+    type="search"
+    name="search"
+    aria-label="Search"
+    class="form-control me-2"
+    (keyup.enter)="doSearch(searchInput.value)"
+  >
+  <button
+    class="btn btn-outline-light border-2"
+    type="submit"
+    (click)="doSearch(searchInput.value)"
+  >Search</button>
+</form>

@@ -1,0 +1,46 @@
+<div id="product-options" [ngClass]="{'shrink-product-option': productOptionsCheckbox}" class="d-none d-md-block card h-100">
+  <div
+    class="card-body h-100 py-2 ps-2 pe-0"
+    [ngClass]="{'lower-product-options': optionIsMinimized}"
+    >
+    <div id="product-options-toggle">
+      <input
+        id="product-options-checkbox"
+        type="checkbox"
+        class="d-none"
+        [(ngModel)]="productOptionsCheckbox"
+      />
+      <button  class="border-0 bg-white" (click)="toggleCheckbox()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <div id="product-option-category">
+      <div id="product-option-category-title" class="mb-2" [ngClass]="{'d-none': optionIsMinimized}">
+        <span id="product-option-category-title-text" class="h5 m-0">Category</span>
+      </div>
+      <div id="product-option-category-list">
+        <div
+          id="product-option-category-list-item-{{productCategory.id}}"
+          *ngFor="let productCategory of productCategories"
+          class="py-2 ps-3 mb-1 product-list-item"
+        >
+          <a
+            id="product-option-category-list-item-{{ productCategory.id }}-link"
+            routerLink="/category/{{ productCategory.id }}"
+            routerLinkActive="active-product-list-item"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            data-bs-title="Default tooltip"
+          >
+            <i class="{{ productCategory.icon }} product-list-item-icon"></i>
+            <span
+              [ngClass]="{'d-none': optionIsMinimized}"
+              class="ms-2 product-list-item-name"
+            >{{ productCategory.name }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

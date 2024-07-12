@@ -1,0 +1,77 @@
+<div class="container">
+  <table class="table table-bordered table-hover">
+    <thead class="table-primary">
+      <tr>
+        <th>Product Image</th>
+        <th>Product Detail</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartItem of cartItems">
+        <td style="width: 20%">
+          <img
+            src="{{ cartItem.imageUrl }}"
+            class="img-fluid"
+            alt="{{ cartItem.name }}"
+          />
+        </td>
+        <td style="width: 50%">
+          <div class="">
+            <p>{{ cartItem.name }}</p>
+            <p>{{ cartItem.unitPrice | currency: "USD" }}</p>
+          </div>
+        </td>
+        <td style="width: 30%">
+          <div>
+            <div>
+              <span class="">Quantity:</span>
+              <div
+                class="d-flex align-items-center justify-content-between mt-2"
+                style="max-width: 130px"
+              >
+                <button
+                  (click)="incrementQuantity(cartItem)"
+                  class="btn btn-primary btn-sm"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+                <span class="mx-3">{{ cartItem.quantity }}</span>
+                <button
+                  (click)="decrementQuantity(cartItem)"
+                  class="btn btn-danger btn-sm"
+                >
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <button
+              (click)="remove(cartItem)"
+              class="btn btn-danger btn-sm mt-2"
+            >
+              Remove
+            </button>
+            <p class="mt-3">
+              <span class="me-2">Subtotal:</span
+              >{{ getSubTotal(cartItem) | currency: "USD" }}
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td class="fw-bold">
+          <div class="">
+            <p><span class="me-2">Total Quantity:</span>{{ totalQuantity }}</p>
+            <p><span class="me-2">Shipping:</span>Free</p>
+            <p>
+              <span class="me-2">Total Price:</span
+              >{{ totalPrice | currency: "USD" }}
+            </p>
+            <a routerLink="/checkout" class="btn btn-primary">Checkout</a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

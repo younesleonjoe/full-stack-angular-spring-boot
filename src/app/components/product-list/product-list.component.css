@@ -1,0 +1,17 @@
+/*:host {*/
+/*  --pagination-height: 40px;*/
+/*}*/
+
+.product-image-container {
+  position: relative;
+  height: 50px;
+  width: 50px;
+}
+
+/*#product-row {*/
+/*  min-height: calc(100% - var(--pagination-height));*/
+/*}*/
+
+#product-list-component {
+  min-height: var(--main-content-height);
+}
